@@ -35,7 +35,7 @@ class TypeRoomScreen extends StatelessWidget {
   }
 
   Widget _buildDesktopView(BuildContext context) {
-    return SingleChildScrollView(
+    return Center(
       child: DataTable(
         columns: const [
           DataColumn(label: Text('Tipo')),
@@ -50,12 +50,13 @@ class TypeRoomScreen extends StatelessWidget {
             DataCell(Text('\$${roomType.price}')),
             DataCell(
               Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  TextButton(
-                    onPressed: () {
-                      // Lógica para editar el tipo de habitación
-                    },
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  Navigator.of(context).pushReplacementNamed(MyRoutes.editTypeRoomForm);
+                },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
                       foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
@@ -63,10 +64,33 @@ class TypeRoomScreen extends StatelessWidget {
                     child: const Text('Editar'),
                   ),
                   const SizedBox(width: 10),
-                  TextButton(
-                    onPressed: () {
-                      // Lógica para eliminar el tipo de habitación
+                     TextButton(
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: const Text('Eliminar'),
+                        content: const Text('¿Estás seguro que quieres eliminar este tipo de habitación?'),
+                        actions: <Widget>[
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: const Text('Cancelar'),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              // Code to delete type room goes here
+                              Navigator.of(context).pop();
+                            },
+                            child: const Text('Eliminar'),
+                          ),
+                        ],
+                      );
                     },
+                  );
+                },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
                       foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
@@ -155,11 +179,11 @@ class TypeRoomScreen extends StatelessWidget {
 }
 
 class RoomType {
-  final String name;
-  final String capacity;
-  final double price;
+    final String name;
+    final String capacity;
+    final double price;
 
-  RoomType(this.name, this.capacity, this.price);
+    RoomType(this.name, this.capacity, this.price);
 }
 
 final List<RoomType> _roomTypes = [

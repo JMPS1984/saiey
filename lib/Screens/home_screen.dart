@@ -7,50 +7,100 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-
     return Scaffold(
       appBar: const MyAppBar(
         title: 'Inicio',
         actions: [], // Cambiado a String en lugar de Text
       ),
       drawer: const SideBar(),
-      body: Center(
-        child: Container(
-          width: size.width * 0.9,
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 3),
-          child: const Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Card(
-                color: Color(0xff4FC3F7),
-                child: ListTile(
-                  leading: Icon(Icons.calendar_today),
-                  title: Text('Item 1'),
-                  subtitle: Text('Descripción del Item 1'),
-                ),
-              ),
-              Card(
-                color: Color(0xff29B6F6),
-                child: ListTile(
-                  leading: Icon(Icons.event),
-                  title: Text('Item 2'),
-                  subtitle: Text('Descripción del Item 2'),
-                ),
-              ),
-              Card(
-                color: Color(0xff2196F3),
-                child: ListTile(
-                  leading: Icon(Icons.barcode_reader),
-                  title: Text('Item 3'),
-                  subtitle: Text('Descripción del Item 3'),
-                ),
-            
-              ),
-            ],
-          ),
-        ),
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          if (constraints.maxWidth > 600) {
+            return _buildDesktopView(context);
+          } else {
+            return _buildMobileView(context);
+          }
+        },
       ),
     );
   }
+
+  Widget _buildDesktopView(BuildContext context) {
+    return const Center(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Card(
+            color: Color(0xff4FC3F7),
+            child: SizedBox(
+              width: 200,
+              child: ListTile(
+                leading: Icon(Icons.calendar_today),
+                title: Text('Item 1'),
+                subtitle: Text('Descripción del Item 1'),
+              ),
+            ),
+          ),
+          SizedBox(width: 16),
+          Card(
+            color: Color(0xff29B6F6),
+            child: SizedBox(
+              width: 200,
+              child: ListTile(
+                leading: Icon(Icons.event),
+                title: Text('Item 2'),
+                subtitle: Text('Descripción del Item 2'),
+              ),
+            ),
+          ),
+          SizedBox(width: 16),
+          Card(
+            color: Color(0xff2196F3),
+            child: SizedBox(
+              width: 200,
+              child: ListTile(
+                leading: Icon(Icons.barcode_reader),
+                title: Text('Item 3'),
+                subtitle: Text('Descripción del Item 3'),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildMobileView(BuildContext context) {
+    return const Column(
+      children: [
+        Card(
+          color: Color(0xff4FC3F7),
+          child: ListTile(
+            leading: Icon(Icons.calendar_today),
+            title: Text('Item 1'),
+            subtitle: Text('Descripción del Item 1'),
+          ),
+        ),
+        SizedBox(height: 16),
+        Card(
+          color: Color(0xff29B6F6),
+          child: ListTile(
+            leading: Icon(Icons.event),
+            title: Text('Item 2'),
+            subtitle: Text('Descripción del Item 2'),
+          ),
+        ),
+        SizedBox(height: 16),
+        Card(
+          color: Color(0xff2196F3),
+          child: ListTile(
+            leading: Icon(Icons.barcode_reader),
+            title: Text('Item 3'),
+            subtitle: Text('Descripción del Item 3'),
+          ),
+        ),
+      ],
+    );
+  }
 }
+

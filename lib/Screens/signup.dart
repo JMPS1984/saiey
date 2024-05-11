@@ -86,133 +86,238 @@ class _SignupState extends State<Signup> {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 16,),
-                       CustomInputField(
-                          labelText: 'Cédula',
-                          hintText: '1234556789',
-                          isDense: true,
-                          validator: (textValue) {
-                            if(textValue == null || textValue.isEmpty) {
-                              return 'este campo es requerido!';
-                            }
-                            return null;
-                          }
-                      ),
-                      CustomInputField(
-                          labelText: 'Introduzca su Nombre',
+                    if (MediaQuery.of(context).size.width < 600)
+                        Column(
+                          children: [
+                              const SizedBox(height: 16),
+                        CustomInputField(
+                          labelText: 'Nombre',
                           hintText: 'Nombre',
                           isDense: true,
                           validator: (textValue) {
-                            if(textValue == null || textValue.isEmpty) {
+                            if (textValue == null || textValue.isEmpty) {
                               return 'este campo es requerido!';
                             }
                             return null;
-                          }
+                          }),
+                      const SizedBox(
+                        height: 16,
                       ),
-                                            const SizedBox(height: 16,),
                       CustomInputField(
-                          labelText: 'Apelido',
+                          labelText: 'Apellido',
                           hintText: 'Apellido',
                           isDense: true,
                           validator: (textValue) {
-                            if(textValue == null || textValue.isEmpty) {
+                            if (textValue == null || textValue.isEmpty) {
                               return 'este campo es requerido!';
                             }
                             return null;
-                          }
+                          }),
+                      const SizedBox(
+                        height: 16,
                       ),
-                      const SizedBox(height: 16,),
                       CustomInputField(
-                          labelText: 'Introduzca su dirección de Correo Electrónico',
+                          labelText:
+                              'Introduzca su dirección de Correo Electrónico',
                           hintText: 'ejemplo@gmail.com',
                           isDense: true,
                           validator: (textValue) {
-                            if(textValue == null || textValue.isEmpty) {
+                            if (textValue == null || textValue.isEmpty) {
                               return 'este campo es requerido!';
                             }
-                            if(!EmailValidator.validate(textValue)) {
+                            if (!EmailValidator.validate(textValue)) {
                               return 'introduzca un correo válido';
                             }
                             return null;
-                          }
+                          }),
+                      const SizedBox(
+                        height: 16,
                       ),
-                      const SizedBox(height: 16,),
                       CustomInputField(
                           labelText: 'Teléfono:',
                           hintText: 'ejemplo: 041612345678',
                           isDense: true,
                           validator: (textValue) {
-                            if(textValue == null || textValue.isEmpty) {
+                            if (textValue == null || textValue.isEmpty) {
                               return 'este campo es requerido!';
                             }
                             return null;
-                          }
+                          }),
+                      const SizedBox(
+                        height: 16,
                       ),
-                      const SizedBox(height: 16,),
-                      CustomInputField(
-                        labelText: 'Contraseña',
-                        hintText: 'contraseña',
-                        isDense: true,
-                        obscureText: true,
-                        validator: (textValue) {
-                          if(textValue == null || textValue.isEmpty) {
-                            return 'este campo es requerido!';
-                          }
-                          return null;
-                          
-                        },
-
-
-                        suffixIcon: true,
-                      ),
-                      const SizedBox(height: 16,),
-                      CustomInputField(
-                        labelText: 'Confirmar Contraseña',
-                        hintText: 'Confirmar Contraseña',
-                        isDense: true,
-                        obscureText: true,
-                        validator: (textValue) {
-                          if(textValue == null || textValue.isEmpty) {
-                            return 'este campo es requerido!';
-                          }
-                          return null;
-                          
-                        },
-
-                        suffixIcon: true,
+                    
+                      const SizedBox(
+                        height: 22,
                       ),
 
-                      const SizedBox(height: 22,),
-                      CustomFormButton(innerText: 'Registrar', onPressed: _handleSignupUser,),
-                      const SizedBox(height: 18,),
-                      SizedBox(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            const Text('Ya tiene una cuenta ? ', style: TextStyle(fontSize: 13, color: Color(0xff939393), fontWeight: FontWeight.bold),),
-                            GestureDetector(
-                              onTap: () => {
-                                Navigator.pushNamed(context, MyRoutes.loginScreen),
-                              },
-                              child: const Text('Inicie sesión', style: TextStyle(fontSize: 15, color: Color(0xff748288), fontWeight: FontWeight.bold),),
-                            ),
+
+
                           ],
-                        ),
-                      ),
-                      const SizedBox(height: 30,),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
+                        )
 
-  void _handleSignupUser() {
+                     else
+Row(
+  children: [
+    Expanded(
+      child: Column(
+        children: [
+          const SizedBox(height: 16),
+          Row(
+            children: [
+              Expanded(
+                child: CustomInputField(
+                  labelText: 'Cédula',
+                  hintText: 'Cédula',
+                  isDense: true,
+                  validator: (textValue) {
+                    if (textValue == null || textValue.isEmpty) {
+                      return 'este campo es requerido!';
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: CustomInputField(
+                  labelText: 'Nombre',
+                  hintText: 'Nombre',
+                  isDense: true,
+                  validator: (textValue) {
+                    if (textValue == null || textValue.isEmpty) {
+                      return 'este campo es requerido!';
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: CustomInputField(
+                  labelText: 'Apellido',
+                  hintText: 'Apellido',
+                  isDense: true,
+                  validator: (textValue) {
+                    if (textValue == null || textValue.isEmpty) {
+                      return 'este campo es requerido!';
+                    }
+                    return null;
+                  },
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          Row(
+            children: [
+              Expanded(
+                child: CustomInputField(
+                  labelText: 'Introduzca su dirección de Correo Electrónico',
+                  hintText: 'ejemplo@gmail.com',
+                  isDense: true,
+                  validator: (textValue) {
+                    if (textValue == null || textValue.isEmpty) {
+                      return 'este campo es requerido!';
+                    }
+                    if (!EmailValidator.validate(textValue)) {
+                      return 'introduzca un correo válido';
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: CustomInputField(
+                  labelText: 'Teléfono:',
+                  hintText: 'ejemplo: 041612345678',
+                  isDense: true,
+                  validator: (textValue) {
+                    if (textValue == null || textValue.isEmpty) {
+                      return 'este campo es requerido!';
+                    }
+                    return null;
+                                            },
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+
+                         Row(
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  children: [
+                                    CustomInputField(
+                                      labelText: 'Nueva Contraseña',
+                                      hintText: 'contraseña',
+                                      isDense: true,
+                                      obscureText: true,
+                                      validator: (textValue) {
+                                        if (textValue == null || textValue.isEmpty) {
+                                          return 'este campo es requerido!';
+                                        }
+                                        return null;
+                                      },
+                                      suffixIcon: true,
+                                    ),
+                                    const SizedBox(height: 16),
+                                    CustomInputField(
+                                      labelText: 'Confirmar Contraseña',
+                                      hintText: 'Confirmar Contraseña',
+                                      isDense: true,
+                                      obscureText: true,
+                                      validator: (textValue) {
+                                        if (textValue == null || textValue.isEmpty) {
+                                          return 'este campo es requerido!';
+                                        }
+                                        return null;
+                                      },
+                                      suffixIcon: true,
+                                    ),
+                                    const SizedBox(height: 22),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                                  const SizedBox(height: 20,),
+                                CustomFormButton(innerText: 'Registrar', onPressed: _handleAddClientForm,),
+                                const SizedBox(height: 18,),
+                                SizedBox(
+  
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      const Text('Ya tiene una cuenta? ', style: TextStyle(fontSize: 13, color: Color(0xff939393), fontWeight: FontWeight.bold),),
+                                      GestureDetector(
+                                        onTap: () => {
+                                           Navigator.pushNamed(context, MyRoutes.loginScreen),
+                                        },
+                                        child: const Text('Iniciar Sesión', style: TextStyle(fontSize: 15, color: Color(0xff748288), fontWeight: FontWeight.bold),),
+                                      ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                      ),
+                                    ),
+                                    
+                                    ]
+                                  ),
+                                  ),
+                                ),
+                                ),
+                                );
+                        }
+
+  void _handleAddClientForm() {
     // signup user
     if (_signupFormKey.currentState!.validate()) {
       ScaffoldMessenger.of(context).showSnackBar(

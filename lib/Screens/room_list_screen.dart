@@ -63,7 +63,7 @@ class RoomListScreen extends StatelessWidget {
   }
 
   Widget _buildDesktopView(BuildContext context) {
-    return SingleChildScrollView(
+        return Center(
       child: DataTable(
         columns: [
           const DataColumn(label: Text('Número')),

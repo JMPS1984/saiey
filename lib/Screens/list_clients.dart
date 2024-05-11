@@ -67,7 +67,7 @@ class ListClientsPage extends StatelessWidget {
   }
 
   Widget _buildDesktopView(BuildContext context) {
-    return SingleChildScrollView(
+    return Center(
       child: DataTable(
          columnSpacing: 16, // Espacio entre columnas
         columns: [
