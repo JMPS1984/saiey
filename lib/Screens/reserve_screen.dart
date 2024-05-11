@@ -14,12 +14,14 @@ class AddReserveForm extends StatefulWidget {
 
 class __AddReserveFormState extends State<AddReserveForm> {
   final _addReserveFormKey = GlobalKey<FormState>();
-  List<String> tiposHabitacion = ['Sencilla', 'Doble', 'Triple', 'Cuádruple'];
+  List<String> tiposHabitacion = ['Sencilla', 'Doble', 'Triple', 'Cuádruple', 'Quintuple', 'Séxtuple'];
   Map<String, List<String>> habitacionesDisponibles = {
     'Sencilla': ['001', '002', '003', '004', '005', '006', '007', '008', '009', '010'],
     'Doble': ['011', '012', '013', '014', '015', '016', '017', '018', '019', '020'],
     'Triple': ['021', '022', '023', '024', '025', '026', '027', '028', '029', '030'],
     'Cuádruple': ['031', '032', '033', '034', '035', '036', '037', '038', '039', '040'],
+    'Quintuple': ['041', '042', '043', '044', '045', '046', '047', '048', '049', '050'],
+    'Séxtuple': ['051', '052', '053', '054', '055', '056', '057', '058', '059', '060'],
   };
   String? selectedRoomType;
   String? selectedRoomNumber;
@@ -33,6 +35,8 @@ class __AddReserveFormState extends State<AddReserveForm> {
           actions: [],
         ),
         drawer: const SideBar(),
+        
+
         backgroundColor: const Color(0xffEEF1F3),
         body: SingleChildScrollView(
           child: Form(
@@ -42,16 +46,17 @@ class __AddReserveFormState extends State<AddReserveForm> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const SizedBox(height: 16),
-                CustomInputDroopdown(
-                  labelText: 'Seleccione el Tipo de Habitación Requerida:',
-                  hintText: 'Presione aquí para seleccionar una opción',
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Este campo es requerido';
-                    }
-                    return null;
-                  },
-                                        items: tiposHabitacion.map((String tipo) {
+                      CustomInputDroopdown(
+                        labelText: 'Seleccione el Tipo de Habitación Requerida:',
+                        hintText: 'Presione aquí para seleccionar una opción',
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Este campo es requerido';
+                          }
+                          return null;
+                        },
+                        
+                 items: tiposHabitacion.map((String tipo) {
                                       return DropdownMenuItem(
                                         value: tipo,
                                         child: Text(tipo),
@@ -74,6 +79,7 @@ class __AddReserveFormState extends State<AddReserveForm> {
                                       ),
                                   
                                     Wrap(
+                                    
                                       spacing: 8,
                                       runSpacing: 8,
                                       children: habitacionesDisponibles[selectedRoomType]!.map((number) {
@@ -99,10 +105,12 @@ class __AddReserveFormState extends State<AddReserveForm> {
                                                     : Colors.black,
                                               ),
                                             ),
+                                            
                                           ),
                                         );
                                       }).toList(),
                                       ),
+
                               const SizedBox(height: 16),
                               CustomDateInputField(
                                 labelText: 'Seleccione una Fecha de Inicio (dd/mm/yyyy)',
@@ -127,12 +135,12 @@ class __AddReserveFormState extends State<AddReserveForm> {
                               const SizedBox(height: 22),
                               CustomFormButton(innerText: 'Reservar', onPressed: _handleAddReserveForm),
                             ],
-                            ),
-                           ]
-                         ),
+                          ),
+                        ]
                         ),
-                     ),
+                      ),
                     ),
+                  ),
                   );
                 }
 
